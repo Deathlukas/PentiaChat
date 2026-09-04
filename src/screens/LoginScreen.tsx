@@ -1,14 +1,26 @@
-import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../theme/colors';
+import { signInWithGoogle } from '../service/firebase/authService'; // sørg for at importere signInWithGoogle korrekt
+import { errorToMessage } from '../service/firebase/error'; // sørg for at importere errorToMessage korrekt
 
 export function LoginScreen() {
-  const onGoogle = () => {
-    // kobles på i næste trin
+  const [loading, setLoading] = useState(false);
+
+  const onGoogle = async () => {
+    setLoading(true);
+    try {
+      await signInWithGoogle();
+    } catch (error) {
+      Alert.alert('Login mislykkedes', errorToMessage(error));
+    } finally {
+      setLoading(false);
+    }
   };
+
   const onFacebook = () => {
-    // kobles på i næste trin
+    // kobles på senere
   };
 
   return (
@@ -27,9 +39,10 @@ export function LoginScreen() {
               pressed && styles.pressed,
             ]}
             onPress={onGoogle}
+            disabled={loading}
           >
             <Text style={[styles.buttonText, { color: colors.googleText }]}>
-              Fortsæt med Google
+              {loading ? 'Logger ind…' : 'Fortsæt med Google'}
             </Text>
           </Pressable>
 

@@ -12,7 +12,20 @@
           "package_name": "com.pentiachat"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "719803028333-0ddpmrj11qjqr0eldvhb5n8amt4i4jeo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pentiachat",
+            "certificate_hash": "a5c66074e514830d75c82a89057d569878e02b01"
+          }
+        },
+        {
+          "client_id": "719803028333-veh5aiq750mvso3nts25r8s8ncf759sd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAIeBKzUz43w1ezDuCKRAyt_-n5zzu2E4s"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719803028333-veh5aiq750mvso3nts25r8s8ncf759sd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
