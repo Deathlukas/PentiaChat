@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '../theme/colors';
-import { signInWithGoogle } from '../service/firebase/authService'; // sørg for at importere signInWithGoogle korrekt
+import { signInWithFacebook, signInWithGoogle } from '../service/firebase/authService'; // sørg for at importere signInWithGoogle korrekt
 import { errorToMessage } from '../service/firebase/error'; // sørg for at importere errorToMessage korrekt
 
 export function LoginScreen() {
@@ -19,8 +19,15 @@ export function LoginScreen() {
     }
   };
 
-  const onFacebook = () => {
-    // kobles på senere
+  const onFacebook = async () => {
+    setLoading(true);
+    try {
+      await signInWithFacebook();
+    } catch (error) {
+      Alert.alert('Login mislykkedes', errorToMessage(error));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
