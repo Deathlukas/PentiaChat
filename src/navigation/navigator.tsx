@@ -1,6 +1,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAuth } from '../context/Auth';
+import { colors } from '../theme/colors';
 import type { RootStackParamList } from './types';
 import { SplashScreen } from '../screens/SplashScreen';
 import { LoginScreen } from '../screens/LoginScreen';
@@ -17,7 +18,14 @@ export function RootNavigator() {
   }
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: colors.brand },
+        headerTintColor: colors.brandText,
+        headerTitleStyle: { fontWeight: '700' },
+        contentStyle: { backgroundColor: colors.background },
+      }}
+    >
       {user == null ? (
         <Stack.Screen
           name="Login"
@@ -26,8 +34,16 @@ export function RootNavigator() {
         />
       ) : (
         <>
-          <Stack.Screen name="Rooms" component={RoomScreen} />
-          <Stack.Screen name="Chat" component={ChatScreen} />
+          <Stack.Screen
+            name="Rooms"
+            component={RoomScreen}
+            options={{ title: 'Chatrum' }}
+          />
+          <Stack.Screen
+            name="Chat"
+            component={ChatScreen}
+            options={({ route }) => ({ title: route.params.roomName })}
+          />
         </>
       )}
     </Stack.Navigator>
