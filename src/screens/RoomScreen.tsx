@@ -9,7 +9,7 @@ import { colors } from '../theme/colors';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Rooms'>;
 
-export function RoomScreen({ navigation }: Props) {
+export function RoomScreen({ navigation }: Props) { // Generer en skærm, der viser en liste over chatrum. Brugeren kan trykke på et rum for at navigere til chat-skærmen.
   const { rooms, loading, refreshing, error, refresh } = useRooms();
 
   useLayoutEffect(() => {

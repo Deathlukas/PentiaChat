@@ -1,4 +1,4 @@
-export const colors = {
+export const colors = { // Definerer farverne, der bruges i appen, herunder brandfarve, baggrundsfarve, tekstfarve og fejlfarve.
     brand: '#0B5FFF',
     brandText: '#FFFFFF',
 

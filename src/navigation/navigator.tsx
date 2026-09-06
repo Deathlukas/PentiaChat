@@ -10,7 +10,7 @@ import { ChatScreen } from '../screens/ChatScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export function RootNavigator() {
+export function RootNavigator() { // Navigationsstacken for appen, der viser login-skærmen, chatrumlisten og chat-skærmen baseret på brugerens autentificeringstilstand.
   const { user, initializing } = useAuth();
 
   if (initializing) {

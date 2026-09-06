@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../theme/colors';
 
-export function SplashScreen() {
+export function SplashScreen() { // Generer en splash-skærm med app-navnet og en indlæsningsindikator, mens appen initialiseres. Den bliver aldrig vist næsten.
   return (
     <View style={styles.container}>
       <Text style={styles.title}>PentiaChat</Text>

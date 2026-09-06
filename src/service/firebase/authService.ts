@@ -5,7 +5,7 @@ import { FacebookAuthProvider } from '@react-native-firebase/auth';
 import { signOut as firebaseSignOut } from '@react-native-firebase/auth';
 
 
-  export async function signOut(): Promise<void> {
+  export async function signOut(): Promise<void> { // Logger brugeren ud fra både Google, Facebook og Firebase. Hvis Google logout fejler, ignoreres fejlen.
     try {
       await GoogleSignin.signOut();
     } catch {
@@ -15,12 +15,11 @@ import { signOut as firebaseSignOut } from '@react-native-firebase/auth';
     await firebaseSignOut(getAuth());
   }
   
-  export async function signInWithGoogle(): Promise<void> {
+  export async function signInWithGoogle(): Promise<void> { // Logger brugeren ind med Google.
     await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
     const response = await GoogleSignin.signIn();
   
     if (!isSuccessResponse(response)) {
-      // Brugeren annullerede selv - ikke en fejl
       return;
     }
   
@@ -33,7 +32,7 @@ import { signOut as firebaseSignOut } from '@react-native-firebase/auth';
     await signInWithCredential(getAuth(), credential);
   }
 
-  export async function signInWithFacebook(): Promise<void> {
+  export async function signInWithFacebook(): Promise<void> { // Logger brugeren ind med Facebook.
     const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
   
     if (result.isCancelled) {

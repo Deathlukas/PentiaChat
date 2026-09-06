@@ -11,7 +11,7 @@ import { colors } from '../theme/colors';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Chat'>;
 
-export function ChatScreen({ route }: Props) {
+export function ChatScreen({ route }: Props) { // Generer en chat-skærm, der viser beskederne i et chatrum og giver brugeren mulighed for at sende nye beskeder.
   const { roomId } = route.params;
   const { user } = useAuth();
   const { messages, loading, loadingOlder, error, send, loadOlder } = useMessages(roomId, user);

@@ -8,7 +8,7 @@ import { errorToMessage } from '../service/firebase/error'; // sørg for at impo
 export function LoginScreen() {
   const [loading, setLoading] = useState(false);
 
-  const onGoogle = async () => {
+  const onGoogle = async () => { // Håndterer login med Google. Sætter loading-tilstanden, forsøger at logge ind, og håndterer eventuelle fejl.
     setLoading(true);
     try {
       await signInWithGoogle();
@@ -19,7 +19,7 @@ export function LoginScreen() {
     }
   };
 
-  const onFacebook = async () => {
+  const onFacebook = async () => { // Håndterer login med Facebook. Sætter loading-tilstanden, forsøger at logge ind, og håndterer eventuelle fejl.
     setLoading(true);
     try {
       await signInWithFacebook();
