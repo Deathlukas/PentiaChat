@@ -10,7 +10,7 @@ type Props = {
   isOwn: boolean;
 };
 
-export function MessageBubble({ message, isOwn }: Props) {
+export function MessageBubble({ message, isOwn }: Props) { // Generer en bobbel med beskedens tekst, afsenderens navn og tidspunktet for beskeden.
   return (
     <View style={[styles.row, isOwn && styles.rowOwn]}>
       {!isOwn && (

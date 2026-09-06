@@ -6,7 +6,7 @@ type Props = {
   onSend: (text: string) => void;
 };
 
-export function MessageInput({ onSend }: Props) {
+export function MessageInput({ onSend }: Props) { // Generer et inputfelt til at skrive beskeder og en send-knap. Når brugeren trykker på send, kaldes onSend med den indtastede tekst.
   const [text, setText] = useState('');
 
   const submit = () => { 
@@ -18,7 +18,7 @@ export function MessageInput({ onSend }: Props) {
     setText('');
   };
 
-  return (
+  return ( 
     <View style={styles.container}>
       <TextInput
         style={styles.input}

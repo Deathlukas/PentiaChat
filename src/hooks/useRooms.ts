@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { observeRooms, fetchRooms } from '../service/firebase/roomRepository';
 import type { ChatRoom } from '../models/chatRooms';
 
-export function useRooms() {
+export function useRooms() { // Hook til at observere og hente chatrum fra Firebase.
   const [rooms, setRooms] = useState<ChatRoom[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -22,7 +22,7 @@ export function useRooms() {
     return unsubscribe;
   }, []);
 
-  const refresh = useCallback(async () => {
+  const refresh = useCallback(async () => { // Henter chatrum manuelt og opdaterer tilstanden.
     setRefreshing(true);
     try {
       setRooms(await fetchRooms());

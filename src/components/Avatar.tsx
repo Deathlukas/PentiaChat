@@ -8,7 +8,7 @@ type Props = {
   size?: number;
 };
 
-export function Avatar({ name, photoUrl, size = 36 }: Props) { 
+export function Avatar({ name, photoUrl, size = 36 }: Props) { // Generere et billede eller initialer baseret på brugerens navn og foto-URL kan ikke ses på egen bruger kun andres.
   const dimension = { width: size, height: size, borderRadius: size / 2 };
   if (photoUrl) {
     return <Image source={{ uri: photoUrl }} style={[styles.image, dimension]} />;
@@ -21,7 +21,7 @@ export function Avatar({ name, photoUrl, size = 36 }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
   image: { backgroundColor: colors.border },
   fallback: { backgroundColor: colors.brand, alignItems: 'center', justifyContent: 'center' },
   initial: { color: colors.brandText, fontWeight: '700' },

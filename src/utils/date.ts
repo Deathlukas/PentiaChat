@@ -1,4 +1,4 @@
-export function formatMessageDate(date: Date | null): string {
+export function formatMessageDate(date: Date | null): string { // Formaterer en dato til en streng, der viser tidspunktet for beskeden, hvis den er fra i dag, ellers viser den datoen og tidspunktet.
     if (!date) {
       return '';
     }

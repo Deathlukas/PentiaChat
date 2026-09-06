@@ -4,7 +4,7 @@ import type { Message } from '../models/messages';
 import type { AppUser } from '../models/user';
 
 
-function mergeSorted(a: Message[], b: Message[]): Message[] { // Fletter to lister, fjerner dubleter (efter id) og sorterer efter createdAt i faldende rækkefølge
+function mergeSorted(a: Message[], b: Message[]): Message[] { 
     const map = new Map<string, Message>();
     for (const m of [...a, ...b]) {
       map.set(m.id, m);

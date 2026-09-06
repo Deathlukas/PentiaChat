@@ -16,7 +16,7 @@ import {
     );
   }
   
-  function toChatRoom(doc: QueryDocumentSnapshot): ChatRoom {
+  function toChatRoom(doc: QueryDocumentSnapshot): ChatRoom { // Konverterer et Firestore-dokument til en ChatRoom
     const data = doc.data();
     return {
       id: doc.id,
@@ -26,7 +26,7 @@ import {
     };
   }
   
-  export function observeRooms(
+  export function observeRooms( // Lytter på ændringer i chatrum og kalder onChange, når der er nye chatrum
     onChange: (rooms: ChatRoom[]) => void,
     onError: (error: Error) => void,
   ): () => void {

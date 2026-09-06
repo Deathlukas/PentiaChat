@@ -8,7 +8,7 @@ type Props = {
   onPress: () => void;
 };
 
-export function RoomListItem({ room, onPress }: Props) {
+export function RoomListItem({ room, onPress }: Props) { // Generer en listeelement for en chatroom med navn, beskrivelse og en chevron. Når brugeren trykker på elementet, kaldes onPress.
   return (
     <Pressable
       onPress={onPress}
