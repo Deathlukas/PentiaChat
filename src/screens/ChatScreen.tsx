@@ -14,7 +14,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Chat'>;
 export function ChatScreen({ route }: Props) {
   const { roomId } = route.params;
   const { user } = useAuth();
-  const { messages, loading, error, send } = useMessages(roomId, user);
+  const { messages, loading, loadingOlder, error, send, loadOlder } = useMessages(roomId, user);
   const insets = useSafeAreaInsets();
 
   return (
@@ -36,6 +36,11 @@ export function ChatScreen({ route }: Props) {
             <MessageBubble message={item} isOwn={item.senderId === user?.uid} />
           )}
           contentContainerStyle={styles.list}
+          onEndReached={loadOlder}
+          onEndReachedThreshold={0.3}
+          ListFooterComponent={
+            loadingOlder ? <ActivityIndicator size="small" /> : undefined
+          }
         />
       )}
       <MessageInput onSend={send} />
@@ -49,4 +54,5 @@ const styles = StyleSheet.create({
   centered: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   list: { paddingVertical: 8 },
   error: { color: colors.error, padding: 8, textAlign: 'center' },
+  footer: { paddingVertical: 12 },
 });

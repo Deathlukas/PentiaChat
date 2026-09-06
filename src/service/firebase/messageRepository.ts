@@ -1,9 +1,9 @@
-import {getFirestore,collection,doc,query,orderBy,limit,onSnapshot,writeBatch,serverTimestamp,} from '@react-native-firebase/firestore';
+import {getFirestore,collection,doc,query,orderBy,limit,onSnapshot,writeBatch,serverTimestamp,getDocs,startAfter,Timestamp} from '@react-native-firebase/firestore';
   import type { QueryDocumentSnapshot } from '@react-native-firebase/firestore';
   import type { Message } from '../../models/messages';
   import type { AppUser } from '../../models/user';
   
-  const PAGE_SIZE = 50;
+  const PAGE_SIZE = 10; // Antal beskeder, der hentes pr. Kan ændres alt efer behov 10 er for testing
   
   function messagesCollection(roomId: string) { // Returnerer en reference til besked-samlingen for et givent chatrum
     return collection(getFirestore(), 'rooms', roomId, 'messages');
@@ -62,4 +62,20 @@ import {getFirestore,collection,doc,query,orderBy,limit,onSnapshot,writeBatch,se
     });
   
     await batch.commit();
-  }
+}
+export async function loadOlderMessages( // Henter ældre beskeder i et chatrum, senere end 50 sidste
+    roomId: string,
+    before: Date,
+  ): Promise<{ messages: Message[]; hasMore: boolean }> {
+    const q = query(
+      messagesCollection(roomId),
+      orderBy('createdAt', 'desc'),
+      startAfter(Timestamp.fromDate(before)),
+      limit(PAGE_SIZE),
+    );
+    const snapshot = await getDocs(q);
+    return {
+      messages: snapshot.docs.map(toMessage),
+      hasMore: snapshot.docs.length === PAGE_SIZE,
+    };
+}
